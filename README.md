@@ -31,6 +31,32 @@ Conçu pour une démonstration client claire : le **responsable** planifie et as
 
 ---
 
+## Tutoriel d’utilisation
+
+Regardez le parcours technicien (connexion → mission → relevés → bon PDF → photo signée → confirmation) :
+
+| Support | Lien |
+|---|---|
+| **Vidéo tuto** (MP4, ~32 Mo) | [docs/JDC_Tuto_Technicien.mp4](./docs/JDC_Tuto_Technicien.mp4) |
+| **Manuel PDF** — Guide des interventions | [docs/Guide_des_interventions.pdf](./docs/Guide_des_interventions.pdf) |
+
+> Sur GitHub : ouvrez la vidéo puis cliquez **View raw** / le lecteur intégré pour la lire dans le navigateur.  
+> Téléchargement direct aussi disponible dans les [Releases](https://github.com/Billyma21/jdc-maintenance-odoo/releases).
+
+<details>
+<summary><strong>Aperçu du contenu du tuto</strong></summary>
+
+1. Connexion avec le compte technicien  
+2. Ouverture d’une intervention assignée  
+3. Saisie des relevés terrain  
+4. Impression du bon d’intervention  
+5. Ajout de la photo du bon signé  
+6. Confirmation et retour d’info au responsable  
+
+</details>
+
+---
+
 ## Structure du dépôt
 
 ```
@@ -39,7 +65,8 @@ Project-jdc_maintenance/
 ├── LICENSE                   ← LGPL-3.0
 ├── COPYRIGHT                 ← copyright Bilal Maayoud
 ├── .gitignore
-├── Formation_Technicien/     ← supports de formation (médias lourds exclus du git)
+├── docs/                     ← vidéo tuto + manuel PDF
+├── Formation_Technicien/     ← notes formation (archives locales hors git)
 └── jdc_demo2/
     ├── docker-compose.yml    ← Odoo 17 + PostgreSQL 15
     ├── README.md
@@ -128,8 +155,11 @@ Les messages du chatter envoyés par le technicien notifient le responsable abon
 
 | Document | Description |
 |---|---|
+| [`docs/JDC_Tuto_Technicien.mp4`](./docs/JDC_Tuto_Technicien.mp4) | Tutoriel vidéo d’utilisation (technicien) |
+| [`docs/Guide_des_interventions.pdf`](./docs/Guide_des_interventions.pdf) | Manuel PDF — guide des interventions |
 | [`jdc_demo2/GUIDE.md`](./jdc_demo2/GUIDE.md) | Installation, branding société, scénarios de test |
 | [`jdc_demo2/README.md`](./jdc_demo2/README.md) | Présentation métier du prototype |
+| [`Formation_Technicien/README.md`](./Formation_Technicien/README.md) | Supports de formation |
 | [`COPYRIGHT`](./COPYRIGHT) | Mentions d’auteur et de copyright |
 | [`LICENSE`](./LICENSE) | Texte de la licence LGPL-3.0 |
 

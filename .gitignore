@@ -24,11 +24,15 @@ Thumbs.db
 .env.*
 !.env.example
 
-# Large training media (exceed GitHub file limits)
+# Large local training archives (keep docs/ video + PDF in git)
 Formation_Technicien/*.mp4
 Formation_Technicien/*.zip
 Formation_Technicien/*.mov
 Formation_Technicien/*.avi
+!docs/*.mp4
+!docs/*.pdf
+!docs/*.jpg
+!docs/*.png
 
 # Logs & temp
 *.log
