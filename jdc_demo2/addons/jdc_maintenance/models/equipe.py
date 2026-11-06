@@ -79,7 +79,7 @@ class JdcEquipe(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "name": "Missions — %s" % self.name,
+            "name": "Missions - %s" % self.name,
             "res_model": "jdc.intervention",
             "view_mode": "kanban,tree,form",
             "domain": [("technicien_id", "in", self.technicien_ids.ids)],

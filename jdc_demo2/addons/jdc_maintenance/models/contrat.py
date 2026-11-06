@@ -157,7 +157,7 @@ class JdcContrat(models.Model):
         self.date_prochaine = date_visite + relativedelta(months=mois)
         return {
             "type": "ir.actions.act_window",
-            "name": "Visite planifiée — à assigner",
+            "name": "Visite planifiée - à assigner",
             "res_model": "jdc.intervention",
             "res_id": intervention.id,
             "view_mode": "form",

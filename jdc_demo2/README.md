@@ -1,7 +1,7 @@
-# Prototype Odoo — Suivi de la maintenance multi-sites
+# Prototype Odoo - Suivi de la maintenance multi-sites
 
-> **Auteur :** MAAYOUD.B — Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
-> **Copyright © 2026 MAAYOUD.B** — licence LGPL-3.0
+> **Auteur :** MAAYOUD.B - Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
+> **Copyright © 2026 MAAYOUD.B** - licence LGPL-3.0
 
 Prototype monté pour l'entretien chez JDC Airports, à partir de la fiche de fonction
 qui mentionne Odoo comme outil de gestion de l'entreprise.

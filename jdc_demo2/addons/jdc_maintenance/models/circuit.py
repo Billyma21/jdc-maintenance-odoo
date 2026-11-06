@@ -207,7 +207,7 @@ class JdcCircuit(models.Model):
             circuit.activity_schedule(
                 "mail.mail_activity_data_todo",
                 date_deadline=fields.Date.context_today(self),
-                summary="Circuit non conforme — %s" % libelle,
+                summary="Circuit non conforme - %s" % libelle,
                 note="Taux de disponibilité : %.1f %%. Seuil appliqué : %.1f %%." % (
                     circuit.taux_disponibilite,
                     circuit.seuil_disponibilite,
@@ -241,7 +241,7 @@ class JdcCircuit(models.Model):
         form = self.env.ref("jdc_maintenance.view_jdc_mesure_form")
         return {
             "type": "ir.actions.act_window",
-            "name": "Isolement — %s" % (self.designation or self.name),
+            "name": "Isolement - %s" % (self.designation or self.name),
             "res_model": "jdc.mesure",
             "view_mode": "graph,tree,form",
             "views": [(graph.id, "graph"), (tree.id, "tree"), (form.id, "form")],

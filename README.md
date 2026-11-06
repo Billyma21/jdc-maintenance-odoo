@@ -1,4 +1,4 @@
-# Maintenance multi-sites — Odoo 17
+# Maintenance multi-sites - Odoo 17
 
 [![Odoo](https://img.shields.io/badge/Odoo-17.0-714B67?logo=odoo&logoColor=white)](https://www.odoo.com/)
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](./LICENSE)
@@ -7,8 +7,8 @@
 
 Prototype professionnel de **suivi de maintenance multi-sites** pour le balisage lumineux aéronautique (AGL), construit sur **Odoo 17**.
 
-> **Auteur :** MAAYOUD.B — Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
-> **Copyright © 2026 MAAYOUD.B** — distribué sous licence **LGPL-3.0**  
+> **Auteur :** MAAYOUD.B - Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
+> **Copyright © 2026 MAAYOUD.B** - distribué sous licence **LGPL-3.0**  
 > Voir [`COPYRIGHT`](./COPYRIGHT) et [`LICENSE`](./LICENSE).
 
 ---
@@ -38,7 +38,7 @@ Regardez le parcours technicien (connexion → mission → relevés → bon PDF 
 | Support | Lien |
 |---|---|
 | **Vidéo tuto** (MP4, ~32 Mo) | [docs/JDC_Tuto_Technicien.mp4](./docs/JDC_Tuto_Technicien.mp4) |
-| **Manuel PDF** — Guide des interventions | [docs/Guide_des_interventions.pdf](./docs/Guide_des_interventions.pdf) |
+| **Manuel PDF** - Guide des interventions | [docs/Guide_des_interventions.pdf](./docs/Guide_des_interventions.pdf) |
 
 > Sur GitHub : ouvrez la vidéo puis cliquez **View raw** / le lecteur intégré pour la lire dans le navigateur.  
 > Téléchargement direct aussi disponible dans les [Releases](https://github.com/Billyma21/jdc-maintenance-odoo/releases).
@@ -94,7 +94,7 @@ Ouvrir **http://localhost:8069**
 
 ### Première installation
 
-1. Créer une base (ex. `demo`) — **ne pas** cocher les données de démonstration Odoo  
+1. Créer une base (ex. `demo`) - **ne pas** cocher les données de démonstration Odoo  
 2. Activer le **mode développeur** (Paramètres → bas de page)  
 3. Applications → **Mettre à jour la liste** → chercher `Maintenance multi-sites` → **Installer**
 
@@ -156,7 +156,7 @@ Les messages du chatter envoyés par le technicien notifient le responsable abon
 | Document | Description |
 |---|---|
 | [`docs/JDC_Tuto_Technicien.mp4`](./docs/JDC_Tuto_Technicien.mp4) | Tutoriel vidéo d’utilisation (technicien) |
-| [`docs/Guide_des_interventions.pdf`](./docs/Guide_des_interventions.pdf) | Manuel PDF — guide des interventions |
+| [`docs/Guide_des_interventions.pdf`](./docs/Guide_des_interventions.pdf) | Manuel PDF - guide des interventions |
 | [`jdc_demo2/GUIDE.md`](./jdc_demo2/GUIDE.md) | Installation, branding société, scénarios de test |
 | [`jdc_demo2/README.md`](./jdc_demo2/README.md) | Présentation métier du prototype |
 | [`Formation_Technicien/README.md`](./Formation_Technicien/README.md) | Supports de formation |
@@ -167,7 +167,7 @@ Les messages du chatter envoyés par le technicien notifient le responsable abon
 
 ## Auteur
 
-**MAAYOUD.B** — Bilal Maayoud  
+**MAAYOUD.B** - Bilal Maayoud  
 GitHub : [@Billyma21](https://github.com/Billyma21)
 
 ```

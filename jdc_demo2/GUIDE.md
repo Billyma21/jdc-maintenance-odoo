@@ -1,7 +1,7 @@
-# Guide complet — Prototype Odoo de suivi de maintenance
+# Guide complet - Prototype Odoo de suivi de maintenance
 
-> **Auteur :** MAAYOUD.B — Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
-> **Copyright © 2026 MAAYOUD.B** — licence LGPL-3.0
+> **Auteur :** MAAYOUD.B - Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
+> **Copyright © 2026 MAAYOUD.B** - licence LGPL-3.0
 
 Trois parties : **installer**, **mettre aux couleurs de l'entreprise**, **tester comme
 un vrai utilisateur**.
@@ -29,7 +29,7 @@ Ouvrir **http://localhost:8069**
 1. **Créer la base**
    - Master Password : `admin` (à retenir)
    - Database Name : `demo`
-   - Email : `admin` — Password : `admin`
+   - Email : `admin` - Password : `admin`
    - Langue : Français (BE), Pays : Belgique
    - **Ne pas cocher** « Load demonstration data » : le module apporte les siennes.
 

@@ -11,7 +11,7 @@
         <!-- ============ BRUXELLES, CAT III ============ -->
         <record id="cir_ebbr_axe" model="jdc.circuit">
             <field name="site_id" ref="site_ebbr"/>
-            <field name="designation">07R/25L — axe de piste</field>
+            <field name="designation">07R/25L - axe de piste</field>
             <field name="systeme">axe_piste</field>
             <field name="categorie">cat3</field>
             <field name="regulateur">CCR-A1</field>
@@ -29,7 +29,7 @@
 
         <record id="cir_ebbr_bord" model="jdc.circuit">
             <field name="site_id" ref="site_ebbr"/>
-            <field name="designation">07R/25L — bord de piste</field>
+            <field name="designation">07R/25L - bord de piste</field>
             <field name="systeme">bord_piste</field>
             <field name="categorie">cat3</field>
             <field name="regulateur">CCR-A2</field>
@@ -44,7 +44,7 @@
 
         <record id="cir_ebbr_tdz" model="jdc.circuit">
             <field name="site_id" ref="site_ebbr"/>
-            <field name="designation">25L — zone de toucher des roues</field>
+            <field name="designation">25L - zone de toucher des roues</field>
             <field name="systeme">tdz</field>
             <field name="categorie">cat3</field>
             <field name="regulateur">CCR-A3</field>
@@ -60,7 +60,7 @@
 
         <record id="cir_ebbr_approche" model="jdc.circuit">
             <field name="site_id" ref="site_ebbr"/>
-            <field name="designation">25L — rampe d'approche</field>
+            <field name="designation">25L - rampe d'approche</field>
             <field name="systeme">approche</field>
             <field name="categorie">cat3</field>
             <field name="regulateur">CCR-A4</field>
@@ -74,7 +74,7 @@
 
         <record id="cir_ebbr_papi" model="jdc.circuit">
             <field name="site_id" ref="site_ebbr"/>
-            <field name="designation">25L — PAPI</field>
+            <field name="designation">25L - PAPI</field>
             <field name="systeme">papi</field>
             <field name="categorie">cat3</field>
             <field name="regulateur">CCR-A5</field>
@@ -88,7 +88,7 @@
 
         <record id="cir_ebbr_twy" model="jdc.circuit">
             <field name="site_id" ref="site_ebbr"/>
-            <field name="designation">Taxiway B — axe</field>
+            <field name="designation">Taxiway B - axe</field>
             <field name="systeme">taxiway_axe</field>
             <field name="categorie">na</field>
             <field name="regulateur">CCR-B1</field>
@@ -103,7 +103,7 @@
         <!-- ============ LIEGE ============ -->
         <record id="cir_eblg_bord" model="jdc.circuit">
             <field name="site_id" ref="site_eblg"/>
-            <field name="designation">05L/23R — bord de piste</field>
+            <field name="designation">05L/23R - bord de piste</field>
             <field name="systeme">bord_piste</field>
             <field name="categorie">cat2</field>
             <field name="regulateur">CCR-L1</field>
@@ -117,7 +117,7 @@
 
         <record id="cir_eblg_seuil" model="jdc.circuit">
             <field name="site_id" ref="site_eblg"/>
-            <field name="designation">23R — seuil et extrémité</field>
+            <field name="designation">23R - seuil et extrémité</field>
             <field name="systeme">seuil</field>
             <field name="categorie">cat2</field>
             <field name="regulateur">CCR-L2</field>
@@ -131,7 +131,7 @@
 
         <record id="cir_eblg_barres" model="jdc.circuit">
             <field name="site_id" ref="site_eblg"/>
-            <field name="designation">Barres d'arrêt — points d'attente</field>
+            <field name="designation">Barres d'arrêt - points d'attente</field>
             <field name="systeme">barre_arret</field>
             <field name="categorie">cat2</field>
             <field name="regulateur">CCR-L4</field>
@@ -147,7 +147,7 @@
         <!-- ============ ANVERS ============ -->
         <record id="cir_ebaw_bord" model="jdc.circuit">
             <field name="site_id" ref="site_ebaw"/>
-            <field name="designation">11/29 — bord de piste</field>
+            <field name="designation">11/29 - bord de piste</field>
             <field name="systeme">bord_piste</field>
             <field name="categorie">cat1</field>
             <field name="regulateur">CCR-N1</field>
@@ -161,7 +161,7 @@
 
         <record id="cir_ebaw_obst" model="jdc.circuit">
             <field name="site_id" ref="site_ebaw"/>
-            <field name="designation">Balisage d'obstacles — bâtiments et mâts</field>
+            <field name="designation">Balisage d'obstacles - bâtiments et mâts</field>
             <field name="systeme">obstacles</field>
             <field name="categorie">na</field>
             <field name="regulateur">Alimentation directe</field>
@@ -173,7 +173,7 @@
         <!-- ============ PARIS ============ -->
         <record id="cir_lfpg_axe" model="jdc.circuit">
             <field name="site_id" ref="site_lfpg"/>
-            <field name="designation">Doublet sud — axe de piste</field>
+            <field name="designation">Doublet sud - axe de piste</field>
             <field name="systeme">axe_piste</field>
             <field name="categorie">cat3</field>
             <field name="regulateur">CCR-P1</field>
@@ -187,7 +187,7 @@
 
         <record id="cir_lfpg_twy" model="jdc.circuit">
             <field name="site_id" ref="site_lfpg"/>
-            <field name="designation">Bretelle W — axe de voie de circulation</field>
+            <field name="designation">Bretelle W - axe de voie de circulation</field>
             <field name="systeme">taxiway_axe</field>
             <field name="categorie">na</field>
             <field name="regulateur">CCR-P7</field>
@@ -203,7 +203,7 @@
         <!-- ============ BORDEAUX ============ -->
         <record id="cir_lfbd_bord" model="jdc.circuit">
             <field name="site_id" ref="site_lfbd"/>
-            <field name="designation">05/23 — bord de piste</field>
+            <field name="designation">05/23 - bord de piste</field>
             <field name="systeme">bord_piste</field>
             <field name="categorie">cat1</field>
             <field name="regulateur">CCR-D1</field>
@@ -216,7 +216,7 @@
         <!-- ============ AMSTERDAM ============ -->
         <record id="cir_eham_twy" model="jdc.circuit">
             <field name="site_id" ref="site_eham"/>
-            <field name="designation">Taxiway Q — bord</field>
+            <field name="designation">Taxiway Q - bord</field>
             <field name="systeme">taxiway_bord</field>
             <field name="categorie">na</field>
             <field name="regulateur">CCR-S3</field>

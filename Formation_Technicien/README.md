@@ -2,7 +2,7 @@
 
 Supports de formation pour l’application **Maintenance multi-sites**.
 
-> **Auteur :** MAAYOUD.B — Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
+> **Auteur :** MAAYOUD.B - Bilal Maayoud ([@Billyma21](https://github.com/Billyma21))  
 > **Copyright © 2026 MAAYOUD.B**
 
 ### Tutoriel (dans le dépôt)
@@ -10,7 +10,7 @@ Supports de formation pour l’application **Maintenance multi-sites**.
 | Fichier | Usage |
 |---|---|
 | [`../docs/JDC_Tuto_Technicien.mp4`](../docs/JDC_Tuto_Technicien.mp4) | Tutoriel vidéo d’utilisation (technicien) |
-| [`../docs/Guide_des_interventions.pdf`](../docs/Guide_des_interventions.pdf) | Manuel PDF — guide des interventions |
+| [`../docs/Guide_des_interventions.pdf`](../docs/Guide_des_interventions.pdf) | Manuel PDF - guide des interventions |
 
 Ces fichiers sont aussi présentés en tête du [`README`](../README.md) principal.
 
