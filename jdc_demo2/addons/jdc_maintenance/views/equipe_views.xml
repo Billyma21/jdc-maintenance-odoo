@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_jdc_equipe_tree" model="ir.ui.view">
+        <field name="name">jdc.equipe.tree</field>
+        <field name="model">jdc.equipe</field>
+        <field name="arch" type="xml">
+            <tree string="Équipes">
+                <field name="name"/>
+                <field name="responsable_ids" widget="many2many_tags"/>
+                <field name="technicien_ids" widget="many2many_tags"/>
+                <field name="responsable_count"/>
+                <field name="technicien_count"/>
+                <field name="intervention_count"/>
+                <field name="active" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_jdc_equipe_form" model="ir.ui.view">
+        <field name="name">jdc.equipe.form</field>
+        <field name="model">jdc.equipe</field>
+        <field name="arch" type="xml">
+            <form string="Équipe de maintenance">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_voir_interventions" type="object"
+                                class="oe_stat_button" icon="fa-wrench">
+                            <field name="intervention_count" widget="statinfo" string="Missions"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Ex. Équipe Belgique"/></h1>
+                    </div>
+                    <group>
+                        <group string="Pilotage">
+                            <field name="responsable_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Responsables autorisés à assigner..."/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Terrain">
+                            <field name="technicien_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Techniciens de l'équipe..."/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"
+                               placeholder="Périmètre géographique, astreintes, consignes..."/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <p class="mb-0">
+                            L'administrateur définit ici quel responsable gère quels techniciens.
+                            Un responsable ne peut assigner une mission qu'à un technicien de ses équipes.
+                            Un technicien ne crée jamais d'intervention : il exécute celles qu'on lui assigne,
+                            complète le rapport, imprime le bon, joint la photo signée, puis attend la suivante.
+                        </p>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_jdc_equipe_search" model="ir.ui.view">
+        <field name="name">jdc.equipe.search</field>
+        <field name="model">jdc.equipe</field>
+        <field name="arch" type="xml">
+            <search string="Équipes">
+                <field name="name"/>
+                <field name="responsable_ids"/>
+                <field name="technicien_ids"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jdc_equipe" model="ir.actions.act_window">
+        <field name="name">Équipes</field>
+        <field name="res_model">jdc.equipe</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_jdc_equipe_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer la première équipe
+            </p>
+            <p>
+                Reliez des responsables à des techniciens. C'est l'administrateur
+                qui configure ces rattachements.
+            </p>
+        </field>
+    </record>
+
+</odoo>

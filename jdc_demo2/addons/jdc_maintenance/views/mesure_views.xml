@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_jdc_mesure_tree" model="ir.ui.view">
+        <field name="name">jdc.mesure.tree</field>
+        <field name="model">jdc.mesure</field>
+        <field name="arch" type="xml">
+            <tree string="Relevés" decoration-danger="conforme == False" editable="bottom">
+                <field name="name" readonly="1"/>
+                <field name="date"/>
+                <field name="circuit_id"/>
+                <field name="site_id" optional="show"/>
+                <field name="systeme" optional="hide"/>
+                <field name="type_controle"/>
+                <field name="intensite_mesuree"/>
+                <field name="ecart_courant" optional="show"/>
+                <field name="isolement_mohm"/>
+                <field name="nb_feux_hs"/>
+                <field name="operateur_id" optional="hide"/>
+                <field name="conforme" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_jdc_mesure_form" model="ir.ui.view">
+        <field name="name">jdc.mesure.form</field>
+        <field name="model">jdc.mesure</field>
+        <field name="arch" type="xml">
+            <form string="Relevé de contrôle">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="circuit_id"/>
+                            <field name="site_id"/>
+                            <field name="intervention_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="type_controle"/>
+                            <field name="operateur_id"/>
+                        </group>
+                    </group>
+                    <group string="Valeurs relevées">
+                        <group>
+                            <field name="intensite_mesuree"/>
+                            <field name="ecart_courant"/>
+                        </group>
+                        <group>
+                            <field name="isolement_mohm"/>
+                            <field name="nb_feux_hs"/>
+                            <field name="conforme"/>
+                        </group>
+                    </group>
+                    <group string="Observations">
+                        <field name="observations" nolabel="1"
+                               placeholder="Conditions de mesure, appareil utilisé, anomalies constatées..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_jdc_mesure_search" model="ir.ui.view">
+        <field name="name">jdc.mesure.search</field>
+        <field name="model">jdc.mesure</field>
+        <field name="arch" type="xml">
+            <search string="Relevés">
+                <field name="name"/>
+                <field name="circuit_id"/>
+                <field name="site_id"/>
+                <filter name="f_non_conforme" string="Non conformes" domain="[('conforme','=',False)]"/>
+                <filter name="f_isolement" string="Mesures d'isolement"
+                        domain="[('type_controle','=','isolement')]"/>
+                <separator/>
+                <filter name="f_annee" string="Cette année" date="date"/>
+                <group expand="0" string="Regrouper par">
+                    <filter name="g_site" string="Site" context="{'group_by':'site_id'}"/>
+                    <filter name="g_circuit" string="Circuit" context="{'group_by':'circuit_id'}"/>
+                    <filter name="g_type" string="Contrôle" context="{'group_by':'type_controle'}"/>
+                    <filter name="g_mois" string="Mois" context="{'group_by':'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_jdc_mesure_graph" model="ir.ui.view">
+        <field name="name">jdc.mesure.graph</field>
+        <field name="model">jdc.mesure</field>
+        <field name="arch" type="xml">
+            <graph string="Isolement relevé" type="line">
+                <field name="date" interval="month"/>
+                <field name="isolement_mohm" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_jdc_mesure_pivot" model="ir.ui.view">
+        <field name="name">jdc.mesure.pivot</field>
+        <field name="model">jdc.mesure</field>
+        <field name="arch" type="xml">
+            <pivot string="Isolement moyen">
+                <field name="circuit_id" type="row"/>
+                <field name="date" interval="quarter" type="col"/>
+                <field name="isolement_mohm" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_jdc_mesure" model="ir.actions.act_window">
+        <field name="name">Relevés de contrôle</field>
+        <field name="res_model">jdc.mesure</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
+        <field name="search_view_id" ref="view_jdc_mesure_search"/>
+    </record>
+
+    <record id="action_jdc_mesure_pivot" model="ir.actions.act_window">
+        <field name="name">Isolement par trimestre</field>
+        <field name="res_model">jdc.mesure</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="view_id" ref="view_jdc_mesure_pivot"/>
+        <field name="search_view_id" ref="view_jdc_mesure_search"/>
+        <field name="domain">[('type_controle', '=', 'isolement')]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Interventions -->
+
+        <record id="inter_1" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="contrat_id" ref="contrat_ebbr"/>
+            <field name="type_intervention">preventive</field>
+            <field name="etat">termine</field>
+            <field name="duree">6.5</field>
+            <field name="travail_de_nuit" eval="True"/>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-3)).strftime('%Y-%m-%d')"/>
+            <field name="nature">visite</field>
+            <field name="habilitation">B2V</field>
+            <field name="consignation" eval="True"/>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_ebbr_axe'), ref('cir_ebbr_bord')])]"/>
+            <field name="description">Contrôle périodique du balisage de piste, nettoyage des optiques, resserrage des connexions.</field>
+            <field name="constat">Deux feux encastrés présentent une baisse d'intensité notable.</field>
+            <field name="suite_a_donner">Remplacement des deux optiques à planifier.</field>
+            <field name="signataire">Responsable d'exploitation</field>
+        </record>
+
+        <record id="inter_2" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">termine</field>
+            <field name="duree">3.0</field>
+            <field name="travail_de_nuit" eval="True"/>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-2, days=-4)).strftime('%Y-%m-%d')"/>
+            <field name="nature">depannage</field>
+            <field name="habilitation">BR</field>
+            <field name="consignation" eval="True"/>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_ebbr_axe')])]"/>
+            <field name="description">Remplacement des deux optiques signalées lors de la visite préventive.</field>
+            <field name="signataire">Responsable d'exploitation</field>
+        </record>
+
+        <record id="inter_3" model="jdc.intervention">
+            <field name="technicien_id" ref="user_resp_maintenance"/>
+            <field name="site_id" ref="site_eblg"/>
+            <field name="contrat_id" ref="contrat_eblg"/>
+            <field name="type_intervention">preventive</field>
+            <field name="etat">termine</field>
+            <field name="duree">5.0</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-5)).strftime('%Y-%m-%d')"/>
+            <field name="nature">mesure</field>
+            <field name="habilitation">B2V</field>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_eblg_bord'), ref('cir_eblg_seuil')])]"/>
+            <field name="description">Visite semestrielle : contrôle des armoires, des régulateurs et mesure d'isolement des boucles.</field>
+        </record>
+
+        <record id="inter_4" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_eblg"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">termine</field>
+            <field name="duree">2.5</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-1, days=-6)).strftime('%Y-%m-%d')"/>
+            <field name="nature">depannage</field>
+            <field name="habilitation">BR</field>
+            <field name="consignation" eval="True"/>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_eblg_barres')])]"/>
+            <field name="description">Défaut d'alimentation sur les barres d'arrêt, reprise d'un raccordement.</field>
+            <field name="constat">Le même circuit avait déjà été repris il y a huit mois.</field>
+            <field name="suite_a_donner">Analyser la récurrence sur ce circuit.</field>
+        </record>
+
+        <record id="inter_5" model="jdc.intervention">
+            <field name="technicien_id" ref="user_resp_maintenance"/>
+            <field name="site_id" ref="site_lfpg"/>
+            <field name="contrat_id" ref="contrat_lfpg"/>
+            <field name="type_intervention">preventive</field>
+            <field name="etat">termine</field>
+            <field name="duree">7.0</field>
+            <field name="travail_de_nuit" eval="True"/>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-3, days=-2)).strftime('%Y-%m-%d')"/>
+            <field name="nature">visite</field>
+            <field name="habilitation">B2V</field>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_lfpg_axe'), ref('cir_lfpg_twy')])]"/>
+            <field name="description">Visite trimestrielle, contrôle du balisage d'axe et des bretelles.</field>
+        </record>
+
+        <record id="inter_6" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_lfpg"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">en_cours</field>
+            <field name="duree">4.0</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(days=-2)).strftime('%Y-%m-%d')"/>
+            <field name="nature">depannage</field>
+            <field name="habilitation">BR</field>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_lfpg_twy')])]"/>
+            <field name="description">Recherche de défaut d'isolement sur la bretelle W, circuit maintenu sous surveillance.</field>
+        </record>
+
+        <record id="inter_7" model="jdc.intervention">
+            <field name="site_id" ref="site_ebaw"/>
+            <field name="contrat_id" ref="contrat_ebaw"/>
+            <field name="type_intervention">preventive</field>
+            <field name="etat">planifie</field>
+            <field name="duree">4.0</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="description">Visite annuelle à préparer.</field>
+        </record>
+
+        <record id="inter_8" model="jdc.intervention">
+            <field name="site_id" ref="site_eham"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">termine</field>
+            <field name="duree">3.5</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-4)).strftime('%Y-%m-%d')"/>
+            <field name="description">Dépannage ponctuel hors contrat.</field>
+        </record>
+
+        <record id="inter_9" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="contrat_id" ref="contrat_ebbr"/>
+            <field name="type_intervention">preventive</field>
+            <field name="etat">planifie</field>
+            <field name="duree">6.0</field>
+            <field name="travail_de_nuit" eval="True"/>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="nature">visite</field>
+            <field name="habilitation">B2V</field>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_ebbr_tdz'), ref('cir_ebbr_approche')])]"/>
+            <field name="description">Visite trimestrielle à replanifier. Priorité au circuit TDZ dont l'isolement a chuté.</field>
+        </record>
+
+        <record id="inter_11" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_eblg"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">termine</field>
+            <field name="duree">2.0</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-8)).strftime('%Y-%m-%d')"/>
+            <field name="nature">depannage</field>
+            <field name="habilitation">BR</field>
+            <field name="consignation" eval="True"/>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_eblg_barres')])]"/>
+            <field name="description">Reprise des barres d'arrêt après extinction de plusieurs feux.</field>
+            <field name="constat">Même symptôme, même circuit. La cause n'est pas identifiée.</field>
+        </record>
+
+        <record id="inter_12" model="jdc.intervention">
+            <field name="technicien_id" ref="user_tech_terrain"/>
+            <field name="site_id" ref="site_eblg"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">termine</field>
+            <field name="duree">2.5</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(months=-4)).strftime('%Y-%m-%d')"/>
+            <field name="nature">depannage</field>
+            <field name="habilitation">BR</field>
+            <field name="consignation" eval="True"/>
+            <field name="circuit_ids" eval="[(6, 0, [ref('cir_eblg_barres')])]"/>
+            <field name="description">Nouveau dépannage des barres d'arrêt, remplacement des feux hors service.</field>
+            <field name="constat">Troisième épisode correctif sur douze mois. Le symptôme est traité, pas la cause.</field>
+            <field name="suite_a_donner">Analyser la récurrence sur ce circuit.</field>
+        </record>
+
+        <record id="inter_10" model="jdc.intervention">
+            <field name="site_id" ref="site_lfbd"/>
+            <field name="type_intervention">corrective</field>
+            <field name="etat">planifie</field>
+            <field name="duree">2.0</field>
+            <field name="date_intervention" eval="(DateTime.today() + relativedelta(days=11)).strftime('%Y-%m-%d')"/>
+            <field name="description">Première intervention sur le nouveau site.</field>
+        </record>
+    </data>
+</odoo>

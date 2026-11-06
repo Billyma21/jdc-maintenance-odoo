@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="equipe_belgique" model="jdc.equipe">
+            <field name="name">Équipe Belgique</field>
+            <field name="responsable_ids" eval="[(6, 0, [ref('user_resp_maintenance')])]"/>
+            <field name="technicien_ids" eval="[(6, 0, [ref('user_tech_terrain')])]"/>
+            <field name="notes">Périmètre Belgique : Bruxelles, Liège, Anvers. Le responsable assigne les missions ; le technicien les exécute.</field>
+        </record>
+
+    </data>
+</odoo>

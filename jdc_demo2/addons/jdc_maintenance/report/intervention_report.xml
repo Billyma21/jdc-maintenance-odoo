@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_jdc_intervention" model="ir.actions.report">
+        <field name="name">Bon d'intervention</field>
+        <field name="model">jdc.intervention</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jdc_maintenance.report_jdc_intervention</field>
+        <field name="report_file">jdc_maintenance.report_jdc_intervention</field>
+        <field name="binding_model_id" ref="model_jdc_intervention"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">"Bon d'intervention - %s" % (object.name)</field>
+    </record>
+
+    <template id="report_jdc_intervention_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2 class="mt16">Bon d'intervention <span t-field="doc.name"/></h2>
+
+                <div class="row mt32 mb16">
+                    <div class="col-6">
+                        <strong>Site</strong><br/>
+                        <span t-field="doc.site_id.name"/><br/>
+                        <span t-if="doc.site_id.code">Code : <span t-field="doc.site_id.code"/><br/></span>
+                        <span t-if="doc.partner_id">Client : <span t-field="doc.partner_id.name"/></span>
+                    </div>
+                    <div class="col-6">
+                        <strong>Intervention</strong><br/>
+                        Date : <span t-field="doc.date_intervention"/><br/>
+                        Type : <span t-field="doc.type_intervention"/><br/>
+                        Nature : <span t-field="doc.nature"/><br/>
+                        <span t-if="doc.contrat_id">Contrat : <span t-field="doc.contrat_id.name"/><br/></span>
+                        <span t-if="doc.travail_de_nuit">Intervention réalisée de nuit<br/></span>
+                    </div>
+                </div>
+
+                <table class="table table-sm">
+                    <tr>
+                        <th>Technicien</th>
+                        <td><span t-field="doc.technicien_id.name"/></td>
+                        <th>Durée</th>
+                        <td><span t-field="doc.duree"/> h</td>
+                        <th>État</th>
+                        <td><span t-field="doc.etat"/></td>
+                    </tr>
+                    <tr t-if="doc.habilitation or doc.consignation">
+                        <th>Habilitation</th>
+                        <td><span t-field="doc.habilitation"/></td>
+                        <th>Consignation</th>
+                        <td colspan="3">
+                            <span t-if="doc.consignation">Oui</span>
+                            <span t-else="">Non</span>
+                        </td>
+                    </tr>
+                </table>
+
+                <t t-if="doc.circuit_ids">
+                    <h4 class="mt24">Circuits concernés</h4>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Désignation</th>
+                                <th>Système</th>
+                                <th>Catégorie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.circuit_ids" t-as="circuit">
+                                <td>
+                                    <span t-if="circuit.designation" t-field="circuit.designation"/>
+                                    <span t-else="" t-field="circuit.name"/>
+                                </td>
+                                <td><span t-field="circuit.systeme"/></td>
+                                <td><span t-field="circuit.categorie"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+
+                <h4 class="mt32">Travaux réalisés</h4>
+                <p t-field="doc.description"/>
+
+                <t t-if="doc.constat">
+                    <h4 class="mt16">Constat et anomalies</h4>
+                    <p t-field="doc.constat"/>
+                </t>
+
+                <t t-if="doc.suite_a_donner">
+                    <h4 class="mt16">Suite à donner</h4>
+                    <p t-field="doc.suite_a_donner"/>
+                </t>
+
+                <div class="row mt64">
+                    <div class="col-6">
+                        <strong>Pour l'intervenant</strong><br/>
+                        <span t-field="doc.technicien_id.name"/>
+                        <div style="border-bottom:1px solid #000; height:50px;"/>
+                    </div>
+                    <div class="col-6">
+                        <strong>Visa du client</strong><br/>
+                        <span t-field="doc.signataire"/>
+                        <div style="border-bottom:1px solid #000; height:50px;"/>
+                    </div>
+                </div>
+
+                <p class="mt32" style="font-size: 11px; font-style: italic;">
+                    Après signature, photographiez ou scannez ce document et joignez-le
+                    à la fiche d'intervention pour confirmer le visa client.
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_jdc_intervention">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="jdc_maintenance.report_jdc_intervention_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

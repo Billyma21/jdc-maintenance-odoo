@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_jdc_campagne_form" model="ir.ui.view">
+        <field name="name">jdc.campagne.form</field>
+        <field name="model">jdc.campagne</field>
+        <field name="arch" type="xml">
+            <form string="Saisie rapide de campagne">
+                <group>
+                    <field name="site_id"/>
+                    <field name="date"/>
+                </group>
+                <p class="text-muted">
+                    Les feux hors service sont préremplis avec la valeur actuelle du circuit.
+                    Laissez l'isolement vide s'il n'est pas mesuré lors de cette campagne.
+                    Les seuils de conformité restent ceux paramétrés sur chaque circuit.
+                </p>
+                <field name="ligne_ids">
+                    <tree editable="bottom" create="false">
+                        <field name="circuit_id" readonly="1" force_save="1"/>
+                        <field name="designation"/>
+                        <field name="nb_feux"/>
+                        <field name="isolement_actuel"/>
+                        <field name="saisir_hs"/>
+                        <field name="nb_feux_hs"/>
+                        <field name="isolement_mohm"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="action_valider" type="object"
+                            string="Créer les relevés" class="btn-primary"/>
+                    <button string="Annuler" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jdc_campagne" model="ir.actions.act_window">
+        <field name="name">Saisie rapide de campagne</field>
+        <field name="res_model">jdc.campagne</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Jeu de donnees de demonstration.
+  Les sites correspondent a des plateformes reelles, mais les circuits, les
+  releves et les valeurs sont des donnees plausibles construites pour la
+  demonstration, pas des donnees d'exploitation.
+-->
+<odoo>
+    <data noupdate="1">
+
+        <!-- ============ BRUXELLES, CAT III ============ -->
+        <record id="cir_ebbr_axe" model="jdc.circuit">
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="designation">07R/25L — axe de piste</field>
+            <field name="systeme">axe_piste</field>
+            <field name="categorie">cat3</field>
+            <field name="regulateur">CCR-A1</field>
+            <field name="puissance_kva">20</field>
+            <field name="intensite_nominale">6.6</field>
+            <field name="nb_crans">5</field>
+            <field name="nb_feux">210</field>
+            <field name="nb_feux_hs">2</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">180</field>
+            <field name="seuil_isolement">50</field>
+            <field name="date_isolement" eval="(DateTime.today() + relativedelta(months=-3)).strftime('%Y-%m-%d')"/>
+            <field name="notes">Circuit le plus contraint du site. Toute intervention se fait hors trafic.</field>
+        </record>
+
+        <record id="cir_ebbr_bord" model="jdc.circuit">
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="designation">07R/25L — bord de piste</field>
+            <field name="systeme">bord_piste</field>
+            <field name="categorie">cat3</field>
+            <field name="regulateur">CCR-A2</field>
+            <field name="puissance_kva">15</field>
+            <field name="nb_feux">104</field>
+            <field name="nb_feux_hs">0</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">240</field>
+            <field name="seuil_isolement">50</field>
+            <field name="date_isolement" eval="(DateTime.today() + relativedelta(months=-3)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <record id="cir_ebbr_tdz" model="jdc.circuit">
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="designation">25L — zone de toucher des roues</field>
+            <field name="systeme">tdz</field>
+            <field name="categorie">cat3</field>
+            <field name="regulateur">CCR-A3</field>
+            <field name="puissance_kva">15</field>
+            <field name="nb_feux">120</field>
+            <field name="nb_feux_hs">7</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">38</field>
+            <field name="seuil_isolement">50</field>
+            <field name="date_isolement" eval="(DateTime.today() + relativedelta(months=-1)).strftime('%Y-%m-%d')"/>
+            <field name="notes">Isolement en baisse depuis deux campagnes. Suspicion d'infiltration sur une boucle.</field>
+        </record>
+
+        <record id="cir_ebbr_approche" model="jdc.circuit">
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="designation">25L — rampe d'approche</field>
+            <field name="systeme">approche</field>
+            <field name="categorie">cat3</field>
+            <field name="regulateur">CCR-A4</field>
+            <field name="puissance_kva">10</field>
+            <field name="nb_feux">66</field>
+            <field name="nb_feux_hs">1</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">155</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <record id="cir_ebbr_papi" model="jdc.circuit">
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="designation">25L — PAPI</field>
+            <field name="systeme">papi</field>
+            <field name="categorie">cat3</field>
+            <field name="regulateur">CCR-A5</field>
+            <field name="puissance_kva">5</field>
+            <field name="nb_feux">8</field>
+            <field name="nb_feux_hs">0</field>
+            <field name="seuil_disponibilite">100</field>
+            <field name="isolement_mohm">310</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <record id="cir_ebbr_twy" model="jdc.circuit">
+            <field name="site_id" ref="site_ebbr"/>
+            <field name="designation">Taxiway B — axe</field>
+            <field name="systeme">taxiway_axe</field>
+            <field name="categorie">na</field>
+            <field name="regulateur">CCR-B1</field>
+            <field name="puissance_kva">10</field>
+            <field name="nb_feux">180</field>
+            <field name="nb_feux_hs">4</field>
+            <field name="seuil_disponibilite">90</field>
+            <field name="isolement_mohm">96</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <!-- ============ LIEGE ============ -->
+        <record id="cir_eblg_bord" model="jdc.circuit">
+            <field name="site_id" ref="site_eblg"/>
+            <field name="designation">05L/23R — bord de piste</field>
+            <field name="systeme">bord_piste</field>
+            <field name="categorie">cat2</field>
+            <field name="regulateur">CCR-L1</field>
+            <field name="puissance_kva">15</field>
+            <field name="nb_feux">112</field>
+            <field name="nb_feux_hs">3</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">128</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <record id="cir_eblg_seuil" model="jdc.circuit">
+            <field name="site_id" ref="site_eblg"/>
+            <field name="designation">23R — seuil et extrémité</field>
+            <field name="systeme">seuil</field>
+            <field name="categorie">cat2</field>
+            <field name="regulateur">CCR-L2</field>
+            <field name="puissance_kva">10</field>
+            <field name="nb_feux">42</field>
+            <field name="nb_feux_hs">0</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">205</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <record id="cir_eblg_barres" model="jdc.circuit">
+            <field name="site_id" ref="site_eblg"/>
+            <field name="designation">Barres d'arrêt — points d'attente</field>
+            <field name="systeme">barre_arret</field>
+            <field name="categorie">cat2</field>
+            <field name="regulateur">CCR-L4</field>
+            <field name="puissance_kva">5</field>
+            <field name="nb_feux">36</field>
+            <field name="nb_feux_hs">6</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">61</field>
+            <field name="seuil_isolement">50</field>
+            <field name="notes">Circuit qui revient régulièrement en correctif. À analyser.</field>
+        </record>
+
+        <!-- ============ ANVERS ============ -->
+        <record id="cir_ebaw_bord" model="jdc.circuit">
+            <field name="site_id" ref="site_ebaw"/>
+            <field name="designation">11/29 — bord de piste</field>
+            <field name="systeme">bord_piste</field>
+            <field name="categorie">cat1</field>
+            <field name="regulateur">CCR-N1</field>
+            <field name="puissance_kva">10</field>
+            <field name="nb_feux">78</field>
+            <field name="nb_feux_hs">1</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">142</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <record id="cir_ebaw_obst" model="jdc.circuit">
+            <field name="site_id" ref="site_ebaw"/>
+            <field name="designation">Balisage d'obstacles — bâtiments et mâts</field>
+            <field name="systeme">obstacles</field>
+            <field name="categorie">na</field>
+            <field name="regulateur">Alimentation directe</field>
+            <field name="nb_feux">24</field>
+            <field name="nb_feux_hs">2</field>
+            <field name="seuil_disponibilite">100</field>
+        </record>
+
+        <!-- ============ PARIS ============ -->
+        <record id="cir_lfpg_axe" model="jdc.circuit">
+            <field name="site_id" ref="site_lfpg"/>
+            <field name="designation">Doublet sud — axe de piste</field>
+            <field name="systeme">axe_piste</field>
+            <field name="categorie">cat3</field>
+            <field name="regulateur">CCR-P1</field>
+            <field name="puissance_kva">25</field>
+            <field name="nb_feux">268</field>
+            <field name="nb_feux_hs">5</field>
+            <field name="seuil_disponibilite">95</field>
+            <field name="isolement_mohm">176</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <record id="cir_lfpg_twy" model="jdc.circuit">
+            <field name="site_id" ref="site_lfpg"/>
+            <field name="designation">Bretelle W — axe de voie de circulation</field>
+            <field name="systeme">taxiway_axe</field>
+            <field name="categorie">na</field>
+            <field name="regulateur">CCR-P7</field>
+            <field name="puissance_kva">15</field>
+            <field name="nb_feux">196</field>
+            <field name="nb_feux_hs">11</field>
+            <field name="seuil_disponibilite">90</field>
+            <field name="isolement_mohm">44</field>
+            <field name="seuil_isolement">50</field>
+            <field name="notes">Isolement sous le seuil. Campagne de recherche de défaut à programmer.</field>
+        </record>
+
+        <!-- ============ BORDEAUX ============ -->
+        <record id="cir_lfbd_bord" model="jdc.circuit">
+            <field name="site_id" ref="site_lfbd"/>
+            <field name="designation">05/23 — bord de piste</field>
+            <field name="systeme">bord_piste</field>
+            <field name="categorie">cat1</field>
+            <field name="regulateur">CCR-D1</field>
+            <field name="puissance_kva">15</field>
+            <field name="nb_feux">96</field>
+            <field name="nb_feux_hs">0</field>
+            <field name="seuil_disponibilite">95</field>
+        </record>
+
+        <!-- ============ AMSTERDAM ============ -->
+        <record id="cir_eham_twy" model="jdc.circuit">
+            <field name="site_id" ref="site_eham"/>
+            <field name="designation">Taxiway Q — bord</field>
+            <field name="systeme">taxiway_bord</field>
+            <field name="categorie">na</field>
+            <field name="regulateur">CCR-S3</field>
+            <field name="puissance_kva">10</field>
+            <field name="nb_feux">140</field>
+            <field name="nb_feux_hs">3</field>
+            <field name="seuil_disponibilite">90</field>
+            <field name="isolement_mohm">118</field>
+            <field name="seuil_isolement">50</field>
+        </record>
+
+        <!-- ============ RELEVES ============ -->
+        <record id="mes_tdz_1" model="jdc.mesure">
+            <field name="circuit_id" ref="cir_ebbr_tdz"/>
+            <field name="type_controle">isolement</field>
+            <field name="date" eval="(DateTime.today() + relativedelta(months=-13)).strftime('%Y-%m-%d')"/>
+            <field name="isolement_mohm">142</field>
+            <field name="intensite_mesuree">6.6</field>
+            <field name="nb_feux_hs">1</field>
+            <field name="conforme" eval="True"/>
+            <field name="observations">Valeurs nominales.</field>
+        </record>
+        <record id="mes_tdz_2" model="jdc.mesure">
+            <field name="circuit_id" ref="cir_ebbr_tdz"/>
+            <field name="type_controle">isolement</field>
+            <field name="date" eval="(DateTime.today() + relativedelta(months=-7)).strftime('%Y-%m-%d')"/>
+            <field name="isolement_mohm">89</field>
+            <field name="intensite_mesuree">6.58</field>
+            <field name="nb_feux_hs">3</field>
+            <field name="conforme" eval="True"/>
+            <field name="observations">Isolement en baisse par rapport à la campagne précédente. À surveiller.</field>
+        </record>
+        <record id="mes_tdz_3" model="jdc.mesure">
+            <field name="circuit_id" ref="cir_ebbr_tdz"/>
+            <field name="type_controle">isolement</field>
+            <field name="date" eval="(DateTime.today() + relativedelta(months=-1)).strftime('%Y-%m-%d')"/>
+            <field name="isolement_mohm">38</field>
+            <field name="intensite_mesuree">6.52</field>
+            <field name="nb_feux_hs">7</field>
+            <field name="conforme" eval="False"/>
+            <field name="observations">Isolement sous le seuil. Troisième baisse consécutive, recherche de défaut nécessaire.</field>
+        </record>
+
+        <record id="mes_twy_p" model="jdc.mesure">
+            <field name="circuit_id" ref="cir_lfpg_twy"/>
+            <field name="type_controle">isolement</field>
+            <field name="date" eval="(DateTime.today() + relativedelta(months=-2)).strftime('%Y-%m-%d')"/>
+            <field name="isolement_mohm">44</field>
+            <field name="intensite_mesuree">6.6</field>
+            <field name="nb_feux_hs">11</field>
+            <field name="conforme" eval="False"/>
+            <field name="observations">Valeur sous le seuil, circuit maintenu en service avec surveillance renforcée.</field>
+        </record>
+
+        <record id="mes_barres" model="jdc.mesure">
+            <field name="circuit_id" ref="cir_eblg_barres"/>
+            <field name="type_controle">visuel</field>
+            <field name="date" eval="(DateTime.today() + relativedelta(days=-20)).strftime('%Y-%m-%d')"/>
+            <field name="nb_feux_hs">6</field>
+            <field name="conforme" eval="False"/>
+            <field name="observations">Six feux hors service sur les barres d'arrêt. Troisième épisode en huit mois sur ce circuit.</field>
+        </record>
+
+        <record id="mes_axe_bru" model="jdc.mesure">
+            <field name="circuit_id" ref="cir_ebbr_axe"/>
+            <field name="type_controle">electrique</field>
+            <field name="date" eval="(DateTime.today() + relativedelta(months=-4)).strftime('%Y-%m-%d')"/>
+            <field name="intensite_mesuree">6.61</field>
+            <field name="isolement_mohm">180</field>
+            <field name="nb_feux_hs">2</field>
+            <field name="conforme" eval="True"/>
+            <field name="observations">Contrôle annuel : alimentations, parafoudres, coffrets de commande, continuité.</field>
+        </record>
+
+    </data>
+</odoo>

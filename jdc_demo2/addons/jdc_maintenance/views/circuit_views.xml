@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_jdc_circuit_tree" model="ir.ui.view">
+        <field name="name">jdc.circuit.tree</field>
+        <field name="model">jdc.circuit</field>
+        <field name="arch" type="xml">
+            <tree string="Circuits"
+                  decoration-danger="conformite == 'non_conforme' or isolement_alerte or recurrence_alerte"
+                  decoration-warning="conformite == 'surveillance'">
+                <field name="name"/>
+                <field name="site_id"/>
+                <field name="designation" optional="show"/>
+                <field name="systeme"/>
+                <field name="categorie"/>
+                <field name="regulateur" optional="hide"/>
+                <field name="intensite_nominale" optional="hide"/>
+                <field name="nb_feux"/>
+                <field name="nb_feux_hs" sum="Feux HS"/>
+                <field name="taux_disponibilite" optional="show"/>
+                <field name="nb_correctives_12m" optional="show"/>
+                <field name="recurrence_alerte" optional="show"/>
+                <field name="isolement_mohm" optional="show"/>
+                <field name="isolement_alerte" optional="hide"/>
+                <field name="conformite"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_jdc_circuit_form" model="ir.ui.view">
+        <field name="name">jdc.circuit.form</field>
+        <field name="model">jdc.circuit</field>
+        <field name="arch" type="xml">
+            <form string="Circuit de balisage">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_voir_mesures" type="object"
+                                class="oe_stat_button" icon="fa-line-chart">
+                            <field name="mesure_count" widget="statinfo" string="Relevés"/>
+                        </button>
+                        <button name="action_voir_isolement" type="object"
+                                class="oe_stat_button" icon="fa-bolt">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Isolement</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                        <h2><field name="designation" placeholder="Repère d'exploitation, ex. 07L/25R axe"/></h2>
+                    </div>
+                    <group>
+                        <group string="Identification">
+                            <field name="site_id"/>
+                            <field name="systeme"/>
+                            <field name="categorie"/>
+                        </group>
+                        <group string="Alimentation">
+                            <field name="regulateur"/>
+                            <field name="puissance_kva"/>
+                            <field name="intensite_nominale"/>
+                            <field name="nb_crans"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Disponibilité des feux">
+                            <field name="nb_feux"/>
+                            <field name="nb_feux_hs"/>
+                            <field name="seuil_disponibilite"/>
+                            <field name="taux_disponibilite"/>
+                            <field name="conformite"/>
+                            <field name="nb_correctives_12m"/>
+                            <field name="recurrence_alerte"/>
+                        </group>
+                        <group string="Isolement">
+                            <field name="isolement_mohm"/>
+                            <field name="date_isolement"/>
+                            <field name="seuil_isolement"/>
+                            <field name="isolement_alerte"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Relevés" name="releves">
+                            <field name="mesure_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="type_controle"/>
+                                    <field name="intensite_mesuree"/>
+                                    <field name="isolement_mohm"/>
+                                    <field name="nb_feux_hs"/>
+                                    <field name="conforme"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_jdc_circuit_search" model="ir.ui.view">
+        <field name="name">jdc.circuit.search</field>
+        <field name="model">jdc.circuit</field>
+        <field name="arch" type="xml">
+            <search string="Circuits">
+                <field name="name"/>
+                <field name="designation"/>
+                <field name="site_id"/>
+                <field name="regulateur"/>
+                <filter name="f_non_conforme" string="Non conformes"
+                        domain="[('conformite','=','non_conforme')]"/>
+                <filter name="f_surveillance" string="Sous surveillance"
+                        domain="[('conformite','=','surveillance')]"/>
+                <filter name="f_isolement" string="Isolement sous le seuil"
+                        domain="[('isolement_alerte','=',True)]"/>
+                <filter name="f_recurrence" string="Défaillances récurrentes"
+                        domain="[('recurrence_alerte','=',True)]"/>
+                <separator/>
+                <filter name="f_cat3" string="CAT III" domain="[('categorie','=','cat3')]"/>
+                <group expand="0" string="Regrouper par">
+                    <filter name="g_site" string="Site" context="{'group_by':'site_id'}"/>
+                    <filter name="g_systeme" string="Système" context="{'group_by':'systeme'}"/>
+                    <filter name="g_cat" string="Catégorie" context="{'group_by':'categorie'}"/>
+                    <filter name="g_conf" string="Conformité" context="{'group_by':'conformite'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jdc_circuit" model="ir.actions.act_window">
+        <field name="name">Circuits de balisage</field>
+        <field name="res_model">jdc.circuit</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_jdc_circuit_search"/>
+    </record>
+
+    <record id="action_jdc_circuit_alerte" model="ir.actions.act_window">
+        <field name="name">Points de vigilance</field>
+        <field name="res_model">jdc.circuit</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_jdc_circuit_search"/>
+        <field name="context">{'search_default_f_non_conforme': 1, 'search_default_f_surveillance': 1, 'search_default_f_isolement': 1, 'search_default_f_recurrence': 1}</field>
+    </record>
+
+</odoo>

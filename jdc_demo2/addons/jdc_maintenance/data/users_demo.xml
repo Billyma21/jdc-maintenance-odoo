@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="user_tech_terrain" model="res.users">
+            <field name="name">Technicien terrain</field>
+            <field name="login">technicien</field>
+            <field name="password">technicien</field>
+            <field name="email">technicien@example.com</field>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('jdc_maintenance.group_jdc_technicien')])]"/>
+        </record>
+
+        <record id="user_resp_maintenance" model="res.users">
+            <field name="name">Responsable maintenance</field>
+            <field name="login">responsable</field>
+            <field name="password">responsable</field>
+            <field name="email">responsable@example.com</field>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('jdc_maintenance.group_jdc_manager')])]"/>
+        </record>
+
+    </data>
+</odoo>

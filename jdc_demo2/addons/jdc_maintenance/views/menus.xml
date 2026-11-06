@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_jdc_root" name="Maintenance" sequence="10"
+              groups="jdc_maintenance.group_jdc_technicien"/>
+
+    <menuitem id="menu_jdc_vue_ensemble" name="Vue d'ensemble"
+              parent="menu_jdc_root" action="action_jdc_vue_ensemble" sequence="1"/>
+
+    <menuitem id="menu_jdc_operations" name="Interventions"
+              parent="menu_jdc_root" sequence="10"/>
+    <menuitem id="menu_jdc_mes_interventions" name="Mes interventions"
+              parent="menu_jdc_operations" action="action_jdc_intervention_mes" sequence="5"/>
+    <menuitem id="menu_jdc_interventions_a_assigner" name="À assigner"
+              parent="menu_jdc_operations" action="action_jdc_intervention_a_assigner" sequence="8"
+              groups="jdc_maintenance.group_jdc_manager"/>
+    <menuitem id="menu_jdc_interventions" name="Toutes les interventions"
+              parent="menu_jdc_operations" action="action_jdc_intervention" sequence="10"
+              groups="jdc_maintenance.group_jdc_manager"/>
+    <menuitem id="menu_jdc_bons_a_confirmer" name="Bons à confirmer"
+              parent="menu_jdc_operations" action="action_jdc_intervention_bons_a_confirmer" sequence="15"
+              groups="jdc_maintenance.group_jdc_manager"/>
+
+    <menuitem id="menu_jdc_contrats_parent" name="Contrats"
+              parent="menu_jdc_root" sequence="20"/>
+    <menuitem id="menu_jdc_contrats_planifier" name="À planifier"
+              parent="menu_jdc_contrats_parent" action="action_jdc_contrat_a_planifier" sequence="5"
+              groups="jdc_maintenance.group_jdc_manager"/>
+    <menuitem id="menu_jdc_contrats" name="Tous les contrats"
+              parent="menu_jdc_contrats_parent" action="action_jdc_contrat" sequence="10"/>
+
+    <menuitem id="menu_jdc_parc" name="Installations"
+              parent="menu_jdc_root" sequence="30"/>
+    <menuitem id="menu_jdc_circuits_alerte" name="Points de vigilance"
+              parent="menu_jdc_parc" action="action_jdc_circuit_alerte" sequence="5"/>
+    <menuitem id="menu_jdc_circuits" name="Circuits de balisage"
+              parent="menu_jdc_parc" action="action_jdc_circuit" sequence="10"/>
+    <menuitem id="menu_jdc_campagne" name="Saisie rapide de campagne"
+              parent="menu_jdc_parc" action="action_jdc_campagne" sequence="15"/>
+    <menuitem id="menu_jdc_mesures" name="Relevés de contrôle"
+              parent="menu_jdc_parc" action="action_jdc_mesure" sequence="20"/>
+    <menuitem id="menu_jdc_mesure_pivot" name="Isolement par trimestre"
+              parent="menu_jdc_parc" action="action_jdc_mesure_pivot" sequence="25"
+              groups="jdc_maintenance.group_jdc_manager"/>
+    <menuitem id="menu_jdc_sites" name="Sites"
+              parent="menu_jdc_parc" action="action_jdc_site" sequence="30"/>
+
+    <menuitem id="menu_jdc_analyse" name="Analyse"
+              parent="menu_jdc_root" action="action_jdc_intervention_analyse" sequence="40"
+              groups="jdc_maintenance.group_jdc_manager"/>
+
+    <menuitem id="menu_jdc_config" name="Configuration"
+              parent="menu_jdc_root" sequence="90"
+              groups="jdc_maintenance.group_jdc_admin"/>
+    <menuitem id="menu_jdc_equipes" name="Équipes"
+              parent="menu_jdc_config" action="action_jdc_equipe" sequence="10"
+              groups="jdc_maintenance.group_jdc_admin"/>
+</odoo>

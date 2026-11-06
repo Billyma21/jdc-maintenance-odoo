@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_jdc_site_conformite" model="ir.actions.report">
+        <field name="name">Attestation de conformité</field>
+        <field name="model">jdc.site</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jdc_maintenance.report_jdc_site_conformite</field>
+        <field name="report_file">jdc_maintenance.report_jdc_site_conformite</field>
+        <field name="binding_model_id" ref="model_jdc_site"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Attestation de conformité - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_jdc_site_conformite_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2 class="mt16">Attestation de conformité</h2>
+
+                <div class="row mt32 mb16">
+                    <div class="col-6">
+                        <strong>Site</strong><br/>
+                        <span t-field="doc.name"/><br/>
+                        <span t-if="doc.code">Code OACI : <span t-field="doc.code"/><br/></span>
+                        <span t-if="doc.partner_id">Client : <span t-field="doc.partner_id.name"/></span>
+                    </div>
+                    <div class="col-6">
+                        <strong>Document</strong><br/>
+                        Date d'édition :
+                        <span t-esc="datetime.date.today().strftime('%d/%m/%Y')"/><br/>
+                        État : <span t-field="doc.etat_site"/>
+                    </div>
+                </div>
+
+                <h4 class="mt16">Circuits de balisage</h4>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Désignation</th>
+                            <th>Système</th>
+                            <th>Catégorie</th>
+                            <th class="text-end">Feux</th>
+                            <th class="text-end">Hors service</th>
+                            <th class="text-end">Disponibilité</th>
+                            <th class="text-end">Seuil appliqué</th>
+                            <th>Conformité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.circuit_ids" t-as="circuit">
+                            <td>
+                                <span t-if="circuit.designation" t-field="circuit.designation"/>
+                                <span t-else="" t-field="circuit.name"/>
+                            </td>
+                            <td><span t-field="circuit.systeme"/></td>
+                            <td><span t-field="circuit.categorie"/></td>
+                            <td class="text-end"><span t-field="circuit.nb_feux"/></td>
+                            <td class="text-end"><span t-field="circuit.nb_feux_hs"/></td>
+                            <td class="text-end"><span t-field="circuit.taux_disponibilite"/> %</td>
+                            <td class="text-end"><span t-field="circuit.seuil_disponibilite"/> %</td>
+                            <td><span t-field="circuit.conformite"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><strong>Synthèse</strong></td>
+                            <td class="text-end"><strong><span t-field="doc.nb_feux_total"/></strong></td>
+                            <td class="text-end"><strong><span t-field="doc.feux_hs_total"/></strong></td>
+                            <td class="text-end"><strong><span t-field="doc.taux_disponibilite"/> %</strong></td>
+                            <td/>
+                            <td><strong><span t-field="doc.etat_site"/></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="mt32">Dernières mesures d'isolement</h4>
+                <t t-set="releves" t-value="doc._derniers_releves_isolement()"/>
+                <t t-if="releves">
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Circuit</th>
+                                <th class="text-end">Isolement (MΩ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="releves" t-as="releve">
+                                <td><span t-field="releve.date"/></td>
+                                <td>
+                                    <span t-if="releve.circuit_id.designation" t-field="releve.circuit_id.designation"/>
+                                    <span t-else="" t-field="releve.circuit_id.name"/>
+                                </td>
+                                <td class="text-end"><span t-field="releve.isolement_mohm"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+                <p t-else="">Aucun relevé d'isolement enregistré sur ce site.</p>
+
+                <p class="mt32" style="font-style: italic;">
+                    Document établi à partir des relevés enregistrés.
+                    Les seuils appliqués sont ceux paramétrés sur chaque circuit.
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_jdc_site_conformite">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="jdc_maintenance.report_jdc_site_conformite_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

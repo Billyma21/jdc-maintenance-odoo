@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_jdc_contrat_tree" model="ir.ui.view">
+        <field name="name">jdc.contrat.tree</field>
+        <field name="model">jdc.contrat</field>
+        <field name="arch" type="xml">
+            <tree string="Contrats"
+                  decoration-danger="alerte == 'retard'"
+                  decoration-warning="alerte == 'bientot'">
+                <field name="name"/>
+                <field name="site_id"/>
+                <field name="partner_id"/>
+                <field name="periodicite"/>
+                <field name="date_prochaine"/>
+                <field name="jours_restants"/>
+                <field name="alerte"/>
+                <field name="intervention_count"/>
+                <field name="etat"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_jdc_contrat_form" model="ir.ui.view">
+        <field name="name">jdc.contrat.form</field>
+        <field name="model">jdc.contrat</field>
+        <field name="arch" type="xml">
+            <form string="Contrat de maintenance">
+                <header>
+                    <button name="action_activer" type="object" string="Activer"
+                            class="btn-primary" invisible="etat != 'brouillon'"/>
+                    <button name="action_planifier_visite" type="object"
+                            string="Planifier la prochaine visite" class="btn-primary"
+                            invisible="etat != 'actif'"
+                            groups="jdc_maintenance.group_jdc_manager"/>
+                    <button name="action_cloturer" type="object" string="Clôturer"
+                            invisible="etat in ('brouillon', 'cloture')"/>
+                    <field name="etat" widget="statusbar"
+                           statusbar_visible="brouillon,actif,cloture"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_voir_interventions" type="object"
+                                class="oe_stat_button" icon="fa-wrench">
+                            <field name="intervention_count" widget="statinfo" string="Interventions"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="site_id"/>
+                            <field name="partner_id"/>
+                            <field name="periodicite"/>
+                        </group>
+                        <group>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                            <field name="date_prochaine"/>
+                            <field name="jours_restants"/>
+                            <field name="alerte"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Interventions" name="interventions">
+                            <field name="intervention_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="date_intervention"/>
+                                    <field name="type_intervention"/>
+                                    <field name="technicien_id"/>
+                                    <field name="duree" sum="Heures"/>
+                                    <field name="etat"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_jdc_contrat_search" model="ir.ui.view">
+        <field name="name">jdc.contrat.search</field>
+        <field name="model">jdc.contrat</field>
+        <field name="arch" type="xml">
+            <search string="Contrats">
+                <field name="name"/>
+                <field name="site_id"/>
+                <field name="partner_id"/>
+                <filter name="f_retard" string="En retard" domain="[('alerte','=','retard')]"/>
+                <filter name="f_bientot" string="À planifier sous 30 jours"
+                        domain="[('alerte','=','bientot')]"/>
+                <separator/>
+                <filter name="f_actif" string="Actifs" domain="[('etat','=','actif')]"/>
+                <group expand="0" string="Regrouper par">
+                    <filter name="g_site" string="Site" context="{'group_by':'site_id'}"/>
+                    <filter name="g_periodicite" string="Périodicité" context="{'group_by':'periodicite'}"/>
+                    <filter name="g_etat" string="État" context="{'group_by':'etat'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jdc_contrat" model="ir.actions.act_window">
+        <field name="name">Contrats de maintenance</field>
+        <field name="res_model">jdc.contrat</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_jdc_contrat_search"/>
+    </record>
+
+    <record id="action_jdc_contrat_a_planifier" model="ir.actions.act_window">
+        <field name="name">À planifier</field>
+        <field name="res_model">jdc.contrat</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_jdc_contrat_search"/>
+        <field name="context">{'search_default_f_bientot': 1, 'search_default_f_retard': 1}</field>
+    </record>
+
+</odoo>

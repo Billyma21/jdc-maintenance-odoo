@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_jdc_intervention" model="ir.sequence">
+            <field name="name">Intervention</field>
+            <field name="code">jdc.intervention</field>
+            <field name="prefix">INT-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_jdc_contrat" model="ir.sequence">
+            <field name="name">Contrat de maintenance</field>
+            <field name="code">jdc.contrat</field>
+            <field name="prefix">CTR-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_jdc_circuit" model="ir.sequence">
+            <field name="name">Circuit de balisage</field>
+            <field name="code">jdc.circuit</field>
+            <field name="prefix">CIR-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_jdc_mesure" model="ir.sequence">
+            <field name="name">Relevé de contrôle</field>
+            <field name="code">jdc.mesure</field>
+            <field name="prefix">MES-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
